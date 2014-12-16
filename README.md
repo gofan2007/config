@@ -1,34 +1,34 @@
 enorzw/config
 ===================================
 
-##install 
+##Install 
 
     > go get github.com/enorzw/config
   
-###how to use
+###How to use
+```go
+package main
 
-    package main
-    
-    import(
-    	"fmt"
-    	"github.com/enorzw/config"
-    )
-    
-    func main(){
-    	filepath:="config.ini"
-    	conf := config.NewConfig(filepath)
-    	conf.SetValue("database", "user", "xxx")
-    	conf.SetValue("database", "port", "12345")
-    
-    	conf.Save()
-    
-    	str:=conf.GetString("database", "user")
-    	num:=conf.GetInt("database", "port")
-    	fmt.Println(str)
-    	fmt.Println(num)
-    }
-    
-###
+import(
+	"fmt"
+	"github.com/enorzw/config"
+)
+
+func main(){
+	filepath:="config.ini"
+	conf := config.NewConfig(filepath)
+	conf.SetValue("database", "user", "xxx")
+	conf.SetValue("database", "port", "12345")
+
+	conf.Save()
+
+	str:=conf.GetString("database", "user")
+	num:=conf.GetInt("database", "port")
+	fmt.Println(str)
+	fmt.Println(num)
+}
+```
+###Runing Result
 
     > go run main.go
     xxx
