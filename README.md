@@ -45,14 +45,11 @@ package config
 TYPES
 
 type Config struct {
-    FilePath string
-    // contains filtered or unexported fields
+    FilePath string 
 }
 
 
-func NewConfig(filepath string) *Config
-    Create an empty configuration file
-
+func NewConfig(filepath string) *Config  
 
 func (this *Config) DeleteKey(section, key string) bool
 
