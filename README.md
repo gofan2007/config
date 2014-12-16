@@ -1,4 +1,8 @@
 config
 ======
 
-simple config libs
+##install 
+
+go get github.com/enorzw/config
+
+##how to use
