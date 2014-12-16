@@ -6,16 +6,28 @@ enorzw/config
     > go get github.com/enorzw/config
   
 ###how to use
-    conf := NewConfig("conf")
-    conf.SetValue("database", "user", "xxx")
-    conf.SetValue("database", "port", "12345")
-
-    conf.Save()
-  
-    conf.GetString("database", "user")
-    conf.GetInt("database", "port")
+        package main
+        
+        import(
+        	"fmt"
+        	"github.com/enorzw/config"
+        )
+        
+        func main(){
+        	filepath:="config.ini"
+        	conf := config.NewConfig(filepath)
+        	conf.SetValue("database", "user", "xxx")
+        	conf.SetValue("database", "port", "12345")
+        
+        	conf.Save()
+        
+        	str:=conf.GetString("database", "user")
+        	num:=conf.GetInt("database", "port")
+        	fmt.Println(str)
+        	fmt.Println(num)
+        }
 ###
-    
+
         > go run main.go
         xxx
         12345
