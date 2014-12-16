@@ -3,20 +3,15 @@ enorzw/config
 
 ##install 
 
-> go get github.com/enorzw/config
-
-##how to use
-
-"` 
-> conf := NewConfig(filepath)
-
->	conf.SetValue("database", "user", "xxx")
-
->	conf.SetValue("database", "port", "12345")
-
-> conf.Save()
+    > go get github.com/enorzw/config
   
-> conf.GetString("database", "user")
+###how to use
+    conf := NewConfig(filepath)
+    conf.SetValue("database", "user", "xxx")
+    conf.SetValue("database", "port", "12345")
 
-> conf.GetInt("database", "port")
-"`
+    conf.Save()
+  
+    conf.GetString("database", "user")
+    conf.GetInt("database", "port")
+###
