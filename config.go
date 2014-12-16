@@ -23,6 +23,14 @@ func NewConfig(filepath string) *Config {
 	return conf
 }
 
+func (this *Config) GetBool(section, name string) bool {
+	if !this.isLoad {
+		this.loadConfig()
+	}
+	result, _ := strconv.ParseBool(this.data[section][name])
+	return result
+}
+
 func (this *Config) GetString(section, name string) string {
 	if !this.isLoad {
 		this.loadConfig()
@@ -47,6 +55,34 @@ func (this *Config) SetValue(section string, name string, value interface{}) {
 	}
 	this.data[section] = make(map[string]string)
 	this.data[section][name] = fmt.Sprintf("%v", value)
+}
+
+func (this *Config) DeleteSection(section string) bool {
+	for sect, _ := range this.data {
+		if sect == section {
+			delete(this.data, sect)
+			return true
+		}
+	}
+	return false
+}
+
+func (this *Config) DeleteKey(section, key string) bool {
+	for sect, kvs := range this.data {
+		if sect == section {
+			for k, _ := range kvs {
+				if k == key {
+					delete(kvs, k)
+					return true
+				}
+			}
+		}
+	}
+	return false
+}
+
+func (this *Config) Reload() {
+	this.loadConfig()
 }
 
 func (this *Config) loadConfig() {
