@@ -15,7 +15,6 @@ type Config struct {
 	data     map[string]map[string]string
 }
 
-//Create an empty configuration file
 func NewConfig(filepath string) *Config {
 	conf := new(Config)
 	conf.FilePath = filepath
@@ -108,6 +107,8 @@ func (this *Config) loadConfig() {
 			}
 		}
 		switch {
+		case strings.HasPrefix(line, "#"):
+			continue
 		case len(line) == 0:
 		case line[0] == '[' && line[len(line)-1] == ']':
 			section = strings.TrimSpace(line[1 : len(line)-1])
