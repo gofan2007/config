@@ -107,9 +107,8 @@ func (this *Config) loadConfig() {
 			}
 		}
 		switch {
-		case strings.HasPrefix(line, "#"):
-			continue
 		case len(line) == 0:
+		case strings.HasPrefix(line, "#"):
 		case line[0] == '[' && line[len(line)-1] == ']':
 			section = strings.TrimSpace(line[1 : len(line)-1])
 			this.data[section] = make(map[string]string)
@@ -122,7 +121,7 @@ func (this *Config) loadConfig() {
 }
 
 func (this *Config) Save() {
-	file, err := os.OpenFile(this.FilePath, os.O_CREATE|os.O_WRONLY, 0660)
+	file, err := os.Create(this.FilePath)
 	if err != nil {
 		fmt.Println("Error in Opening File:" + err.Error())
 		return
@@ -136,5 +135,6 @@ func (this *Config) Save() {
 		}
 		buffer += "\n"
 	}
+	buffer += ""
 	file.WriteString(buffer)
 }
